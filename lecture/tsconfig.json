@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "sourceMap": true,
+      "lib": ["ES2020", "DOM"],
+      "jsx": "react",
+      "module": "esnext",
+      "moduleResolution": "Node",
+      "target": "es5",
+      "strict": true,
+      "resolveJsonModule": true,
+      "baseUrl": ".", // 현재폴더 (lecture 폴더를 의미)
+      "paths": {
+        "@hooks/*": ["hooks/*"],
+        "@components/*": ["components/*"],
+        "@layouts/*": ["layouts/*"],
+        "@pages/*": ["pages/*"],
+        "@utils/*": ["utils/*"],
+        "@typings/*": ["typings/*"]
+      },
+    }
+  }
+  
+  // ts는 컴파일러가 필요하다. ts -> js로 바꾸기 위해서.
+  // 그것에 대한 설정 파일이다.
+
+  // esModuleInterop <- 모듈시스템을 하나로 통일하기 위해서 사용
+  // sourceMap <- 디버깅할때 ts로 할 수 있다. 끄면 js로 디버깅해야 한다. 매우 불편함.
+  // lib <- es2020 최신문법 사용, DOM은 웹사이트 만들때 사용
+  // module <- esnext를 사용하면 하나로 합친다(모듈로더를)
+  // target <- es5(옛날 자바스크립트),ie에서도 돌아가게끔 만든다.
+  // strict <- ts 문법과 관련. 얘만 키는 것을 추천한다. type을 매우 엄격하게 해준다.
+  // resolveJsonModule <- 확장자 json인애들을 감지할지 안할지 
