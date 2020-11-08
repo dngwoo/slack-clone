@@ -1,34 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Header, Form, Label, Input, Button, LinkContainer,
 } from '@pages/SignUp/styles';
 
+const [email, setEmail] = useState('');
+const onChangeEmail = (e: React.SyntheticEvent<HTMLInputElement>): void => {
+  setEmail(e.currentTarget.value);
+};
+
+const [nickname, setNickname] = useState('');
+const onChangeNickname = (e: React.SyntheticEvent<HTMLInputElement>): void => {
+  setNickname(e.currentTarget.value);
+};
+
+const [password, setPassword] = useState('');
+const onChangePassword = (e: React.SyntheticEvent<HTMLInputElement>): void => {
+  setPassword(e.currentTarget.value);
+};
+
+const [passwordCheck, setPasswordCheck] = useState('');
+const onChangePasswordCheck = (e: React.SyntheticEvent<HTMLInputElement>): void => {
+  setPasswordCheck(e.currentTarget.value);
+};
+
 const SignUp = () => (
   <div className="container">
-    <Header>Sleact</Header>
+    <Header>dngTalk</Header>
     <Form>
       <Label>
         <span>이메일 주소</span>
         <div>
-          <Input type="email" id="email" name="email" />
+          <Input type="email" id="email" name="email" value={email} onChange={onChangeEmail} />
         </div>
       </Label>
       <Label>
         <span>닉네임</span>
         <div>
-          <Input type="text" id="nickname" name="nickname" />
+          <Input type="text" id="nickname" name="nickname" value={nickname} onChange={onChangeNickname} />
         </div>
       </Label>
       <Label>
         <span>비밀번호</span>
         <div>
-          <Input type="password" id="password" name="password" />
+          <Input type="password" id="password" name="password" value={password} onChange={onChangePassword} />
         </div>
       </Label>
       <Label>
         <span>비밀번호 확인</span>
         <div>
-          <Input type="password" id="password-check" name="password-check" />
+          <Input type="password" id="password-check" name="password-check" value={passwordCheck} onChange={onChangePasswordCheck} />
         </div>
       </Label>
       <Button type="submit">회원가입</Button>
