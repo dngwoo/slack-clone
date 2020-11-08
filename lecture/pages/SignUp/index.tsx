@@ -17,13 +17,13 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const onChangePassword = (e: React.SyntheticEvent<HTMLInputElement>): void => {
     setPassword(e.currentTarget.value);
-    setMissmatchError(passwordCheck !== password);
+    setMissmatchError(passwordCheck !== e.currentTarget.value);
   };
 
   const [passwordCheck, setPasswordCheck] = useState('');
   const onChangePasswordCheck = (e: React.SyntheticEvent<HTMLInputElement>): void => {
     setPasswordCheck(e.currentTarget.value);
-    setMissmatchError(passwordCheck !== password);
+    setMissmatchError(password !== e.currentTarget.value);
   };
 
   const [mismatchError, setMissmatchError] = useState(false);
