@@ -1,6 +1,7 @@
 import path from 'path';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import webpack, { HotModuleReplacementPlugin } from 'webpack';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -57,7 +58,14 @@ const config: webpack.Configuration = {
       },
     ],
   },
-  plugins: [new ReactRefreshWebpackPlugin(), new HotModuleReplacementPlugin()],
+  plugins: [
+    // TODO: 언제 쓰이는 건지 확인 필요
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+    }),
+    new ReactRefreshWebpackPlugin(),
+    new HotModuleReplacementPlugin(),
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
@@ -67,6 +75,12 @@ const config: webpack.Configuration = {
     historyApiFallback: true,
     port: 3090,
     publicPath: '/dist/',
+    proxy: {
+      '/api/': {
+        changeOrigin: true,
+        target: 'http://localhost:3095',
+      },
+    },
   },
 };
 
