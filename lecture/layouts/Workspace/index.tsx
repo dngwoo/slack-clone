@@ -14,10 +14,13 @@ import {
 } from '@layouts/Workspace/styles';
 import useSWR from 'swr';
 import gravatar from 'gravatar';
-import { Link, useParams } from 'react-router-dom';
+import {
+  Link, Route, Switch, useParams,
+} from 'react-router-dom';
 import { IUser } from '@typings/db';
 import fetcher from '@utils/fetcher';
 import DMList from '@components/DMList';
+import DirectMessage from '@pages/DirectMessage';
 
 const Workspace = () => {
   // type definition을 보기위해서 컨트롤 + useSWR 클릭을 해준다.
@@ -58,7 +61,12 @@ const Workspace = () => {
           </MenuScroll>
         </Channels>
         {/* 3열 */}
-        <Chats />
+        <Chats>
+          <Switch>
+            <Route path="/workspace/:workspace/channel/:channel" />
+            <Route path="/workspace/:workspace/dm/:id" component={DirectMessage} />
+          </Switch>
+        </Chats>
       </WorkspaceWrapper>
     </div>
   );
