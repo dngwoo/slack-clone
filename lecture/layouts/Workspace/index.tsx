@@ -17,6 +17,7 @@ import gravatar from 'gravatar';
 import { Link, useParams } from 'react-router-dom';
 import { IUser } from '@typings/db';
 import fetcher from '@utils/fetcher';
+import DMList from '@components/DMList';
 
 const Workspace = () => {
   // type definition을 보기위해서 컨트롤 + useSWR 클릭을 해준다.
@@ -52,7 +53,9 @@ const Workspace = () => {
           <WorkspaceName>
             {userData?.Workspaces.find((v) => v.url === workspace)?.name}
           </WorkspaceName>
-          <MenuScroll />
+          <MenuScroll>
+            <DMList />
+          </MenuScroll>
         </Channels>
         {/* 3열 */}
         <Chats />
