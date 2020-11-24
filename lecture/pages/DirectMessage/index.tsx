@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import React from 'react';
 import gravatar from 'gravatar';
 import useSWR from 'swr';
+import ChatList from '@components/ChatList';
+import ChatBox from '@components/ChatBox';
 
 const DirectMessage = () => {
   const { workspace, id } = useParams<{ workspace: string; id: string }>();
@@ -22,8 +24,8 @@ const DirectMessage = () => {
         )}
       </Header>
       {/* 채팅 목록 */}
-      {/* <ChatList />
-      <ChatBox /> */}
+      <ChatList />
+      <ChatBox />
     </div>
   );
 };

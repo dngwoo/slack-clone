@@ -50,6 +50,7 @@ const Workspace = () => {
               <WorkspaceButton>{val.name.slice(0, 1).toUpperCase()}</WorkspaceButton>
             </Link>
           )) }
+          <AddButton>+</AddButton>
         </Workspaces>
         {/* 2열 */}
         <Channels>
