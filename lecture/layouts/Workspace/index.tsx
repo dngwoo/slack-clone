@@ -14,13 +14,14 @@ import {
 } from '@layouts/Workspace/styles';
 import useSWR from 'swr';
 import gravatar from 'gravatar';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { IUser } from '@typings/db';
 import fetcher from '@utils/fetcher';
 
 const Workspace = () => {
   // type definition을 보기위해서 컨트롤 + useSWR 클릭을 해준다.
   const { data: userData } = useSWR<IUser>('/api/user', fetcher);
+  const { workspace } = useParams<{workspace: string}>();
 
   return (
     <div>
@@ -38,16 +39,18 @@ const Workspace = () => {
       {/* 2행 */}
       <WorkspaceWrapper>
         {/* 1열 */}
-        <Workspaces />
+        <Workspaces>
+          {/* userData가 undefined일때는 로딩중이기 때문에 옵셔널체이닝을 걸어준다 */}
+          { userData?.Workspaces.map((val) => (
+            <Link key={val.id} to={`/workspace/${val.url}`}>
+              <WorkspaceButton>{val.name.slice(0, 1).toUpperCase()}</WorkspaceButton>
+            </Link>
+          )) }
+        </Workspaces>
         {/* 2열 */}
         <Channels>
           <WorkspaceName>
-            {/* userData가 undefined일때는 로딩중이기 때문에 옵셔널체이닝을 걸어준다 */}
-            { userData?.Workspaces.map((val) => (
-              <Link key={val.id} to={`/workspace/${val.url}`}>
-                <WorkspaceButton>{val.name.slice(0, 1).toUpperCase()}</WorkspaceButton>
-              </Link>
-            )) }
+            {userData?.Workspaces.find((v) => v.url === workspace)?.name}
           </WorkspaceName>
           <MenuScroll />
         </Channels>
