@@ -32,7 +32,7 @@ const LogIn = () => {
           },
         )
         .then(() => {
-        //   revalidate();
+          revalidate();
         })
         .catch((error) => {
           console.error(error.response);
