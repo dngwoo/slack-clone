@@ -17,12 +17,12 @@ const SignUp = () => {
 
   const onChangePassword = useCallback((e) => {
     setPassword(e.currentTarget.value);
-    setMismatchError(passwordCheck !== e.target.value);
+    setMismatchError(passwordCheck !== e.currentTarget.value);
   }, [passwordCheck]);
 
   const onChangePasswordCheck = useCallback((e) => {
     setPasswordCheck(e.currentTarget.value);
-    setMismatchError(passwordCheck !== e.currentTarget.value);
+    setMismatchError(password !== e.currentTarget.value);
   }, [password]);
 
   const onSubmit = useCallback(
