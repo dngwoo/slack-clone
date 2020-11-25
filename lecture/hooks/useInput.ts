@@ -8,7 +8,7 @@ const useInput = <T = any>
     => void, Dispatch<SetStateAction<T>>] => {
   const [value, setValue] = useState(initialValue);
   const handler = useCallback((e) => {
-    setValue(e.currentTarget.value);
+    setValue(e.target.value);
   }, []);
   return [value, handler, setValue];
 };

@@ -24,5 +24,6 @@ module.exports = {
     'import/no-unresolved': 'off',
     'no-use-before-define': 'off',
     'no-console': 'off',
+    'react/prop-types': 'off',
   },
 };
